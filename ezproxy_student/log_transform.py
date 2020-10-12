@@ -65,8 +65,6 @@ Class log_transform:
 # MODIFIED FROM Code By Petrina Collingwood
         decoded_url = unquote(self)
         return decoded_url
-            # I feel like we need another function right here
-            # remove ezp string from start of url
 
 # remove excess columns for domain (since we are not really using ip right now, although this could be useful in the future for geospatial analysis)
 
@@ -80,16 +78,16 @@ Class log_transform:
         else:
             return url
 
-        def _clean_url(url):
-            url.replace(prefix, '')# remove http etc
-            url.str.replace(r'^http://www\.|^https://www\.|^http://|^https://', '')
+    def _clean_url(url):
+        url.replace(prefix, '')# remove http etc
+        url.str.replace(r'^http://www\.|^https://www\.|^http://|^https://', '')
                 # remove spaces introduced by unquoting
-            url.str.replace(r'\\n', '')
+        url.str.replace(r'\\n', '')
                 # remove everything after : or / or ?
-            url.str.replace(r'[:/?].*$', '')
+        url.str.replace(r'[:/?].*$', '')
                 # remove .ezp.lib.unimelb.edu.au from urls
-            url.str.replace(r'ezproxy\\.lib\\.ryerson\\.ca', '')
-            url.str.replace(r'ezproxy\\.lib\\.', '-')
+        url.str.replace(r'ezproxy\\.lib\\.ryerson\\.ca', '')
+        url.str.replace(r'ezproxy\\.lib\\.', '-')
 
     # create new column of domains
 
