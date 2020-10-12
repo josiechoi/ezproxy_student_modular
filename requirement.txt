@@ -1,0 +1,5 @@
+#Needed packages/version
+
+pandas
+re
+os
